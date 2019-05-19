@@ -17,6 +17,6 @@ birds.get('/about', function (req, res) {
   res.send('About birds')
 })
 
-console.log(getUrl('login'))//获取url
+// console.log(getUrl('login'))//获取url
 
 module.exports = birds
