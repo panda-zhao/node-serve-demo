@@ -1,3 +1,6 @@
+/**
+ * 上传图片服务器
+ */
 var express = require("express")
 var router = express.Router()
 var fs = require("fs")
