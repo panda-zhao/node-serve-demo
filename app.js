@@ -12,13 +12,21 @@ app.use(bodyParser.json());// 解析post提交的数据为json格式
 
 //设置跨域访问
 app.all("*", function(req, res, next) {
-  console.log(req.hostname)
-  if(req.method==='POST'){
-    console.log('POST请求参数body', req.body) // application/x-www-form-urlencoded时
+  const data =  { 
+    protocol: req.protocol, // http or htts
+    hostname: req.hostname, // baidu.com
+    ip: req.ip, // 127.0.0.1
+    originalUrl: req.originalUrl, // /test
+    method: req.method, // GET or POST
+    baseUrl: req.baseUrl,
+    path: req.path, // /test
+    // route: req.route, // 路由信息
+    params: req.params, // 参数{}
+    body: req.body, // 请求主体，依赖body-parser 中间件
+    query: req.query // 通过参数传递的 如 /test?name=1
   }
-  if(req.method==='GET'){
-    console.log('GET请求参数query', req.query)
-  }
+  console.log('发现一次请求: ', new Date().toLocaleString())
+  console.log('请求的信息', data)
   // 服务器允许被那些origin访问。，*或者www.example.com
   res.header("Access-Control-Allow-Origin", "*") 
   // 预设支持的方法

@@ -45,12 +45,12 @@ var upload = multer({ storage: storage })
 // });
 
 /* 多图上传 */
-// 上传时的字段名必须是files
+// 上传时的字段名必须是 files: form-data
 router.post("/", upload.array("files", 100), function(req, res, next) {
   res.json(req.files)
 });
 
-// 访问上传的图片 http://localhost:8888/iamges/  + filename
+// 访问上传的图片 http://localhost:8888/iamges/ + filename
 router.get("/:name", (req, res) => {
   res.set("Content-Type", "image/png");
   console.log(req.path);

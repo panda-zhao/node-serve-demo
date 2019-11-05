@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
   // 邮件内容
   var mailOptions = {
     from: '13918233075@163.com', // 发送地址 yourname将变成你邮箱的昵称
-    to: '82626363@qq.com', //收件人，可以有多个用，隔开82626363@qq.com, info@easternamericaconsulting.com
+    to: '82626363@qq.com, info@easternamericaconsulting.com', //收件人，可以有多个用，隔开
     // to: 'info@easternamericaconsulting.com',
     subject: 'new message', // 标题 
     html: 
@@ -55,17 +55,19 @@ router.post('/', function (req, res) {
 
   // 发送邮件
   transporter.sendMail(mailOptions, function(error, info) {
-    console.log('Client return information',info);
+    // console.log('Client return information',info);
     if (error) {
-      console.log(error);
+      // console.log(error);
       return res.json({
         statusCode: 400002,
-        emessage: "Mail delivery failed, please try again later!"
+        emessage: "Mail delivery failed, please try again later!",
+        data: info
       });
     }
     return res.json({
       statusCode: 200,
-      emessage: "Successful mail delivery"
+      emessage: "Successful mail delivery",
+      data: data
     });
   });
 })
